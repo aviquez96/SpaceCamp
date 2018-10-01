@@ -17,18 +17,21 @@
         </div>
     </div>
 
-    <div class="row" style="display:flex; flex-wrap:wrap">
+    <div class="row text-center" style="display:flex; flex-wrap:wrap">
         <% campgrounds.forEach(function (camp) { %>
             <div class="col-md-3 col-sm-6"> 
                 <div class="thumbnail">
                     <img src="<%= camp.image %>" alt=""> 
                     <div class="caption">
                         <h4> <%= camp.name %> </h4>
-                    </div>             
+                    </div>   
+                    <p>
+                        <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary">More Info</a>
+                    </p>          
                 </div>
             </div>
         <% }) %>  
     </div>
-    
+
     <% include partials/footer %>
 </div>

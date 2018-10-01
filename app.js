@@ -19,7 +19,8 @@ mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true});
 // Schema Setup
 var campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 })
 
 // Turn scheema into a model 
@@ -27,66 +28,74 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 
 // DATABASE SETUP END //////////////////////////////////////////////////////////////////
 
-// Model allows us to use mongo's functions
-Campground.create(
-    {
-        name: "Mountain Tops", 
-        image: "https://photosforclass.com/download/flickr-1514148183"
-    } , function(err, campground) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(campground);
-        }
-});
-
-// Global Variables
-var campgrounds = [
-    {name: "Salmon Creek", image: "https://photosforclass.com/download/pixabay-1208201?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe837b1072af4003ed1584d05fb1d4e97e07ee3d21cac104496f8c37ca3eeb7bf_960.jpg&user=Free-Photos"},
-    {name: "Grannite Hill", image: "https://photosforclass.com/download/pixabay-1845906?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db50a21f4073ed1584d05fb1d4e97e07ee3d21cac104496f8c37ca3eeb7bf_960.jpg&user=Pexels"}, 
-    {name: "Mountain Tops", image: "https://photosforclass.com/download/flickr-1514148183"},
-    {name: "Salmon Creek", image: "https://photosforclass.com/download/pixabay-1208201?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe837b1072af4003ed1584d05fb1d4e97e07ee3d21cac104496f8c37ca3eeb7bf_960.jpg&user=Free-Photos"},
-    {name: "Grannite Hill", image: "https://photosforclass.com/download/pixabay-1845906?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db50a21f4073ed1584d05fb1d4e97e07ee3d21cac104496f8c37ca3eeb7bf_960.jpg&user=Pexels"}, 
-    {name: "Mountain Tops", image: "https://photosforclass.com/download/flickr-1514148183"},
-    {name: "Salmon Creek", image: "https://photosforclass.com/download/pixabay-1208201?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe837b1072af4003ed1584d05fb1d4e97e07ee3d21cac104496f8c37ca3eeb7bf_960.jpg&user=Free-Photos"},
-    {name: "Grannite Hill", image: "https://photosforclass.com/download/pixabay-1845906?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db50a21f4073ed1584d05fb1d4e97e07ee3d21cac104496f8c37ca3eeb7bf_960.jpg&user=Pexels"}, 
-    {name: "Mountain Tops", image: "https://photosforclass.com/download/flickr-1514148183"}
-]
-
 // GET ROUTES DEFINITION START //////////////////////////////////////////////////////////////////
 app.get("/", function (req, res) {
     res.render('landing')
 });
 
+// INDEX Route (REST Convention) - show all campgrounds
 app.get("/campgrounds", function (req, res) {
     // Get all campgrounds from DB, then render
     Campground.find({}, function(err, allCampgrounds){
         if (err) {
             console.log(err);
         } else {
-            res.render("campgrounds", {campgrounds: allCampgrounds});
+            res.render("index", {campgrounds: allCampgrounds});
         }
     })
 })
 
+// NEW Route (REST Convention) - Show form to create new campground
 app.get("/campgrounds/new", function (req, res) {
     res.render("new");
 })
 
+// SHOW Route (REST Convention) - Show information of 1 individual item
+// Remember, this needs to be after /campgrounds/new cause otherwise it will get overwritten and never go to /new 
+app.get("/campgrounds/:id", function (req, res) {
+    Campground.findById(req.params.id, function(err, foundCampground) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("show", {campground: foundCampground});
+        }
+    })
+})
+
 // GET ROUTES DEFINITION END //////////////////////////////////////////////////////////////////
  
+// Campground.create (
+//     {
+//         name: "Granite Hill",
+//         image: "https://photosforclass.com/download/flickr-1514148183",
+//         description: "A beautiful destination for you and your family!"
+//     }, function (err, newCampground) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log("Campground has been created");
+//         }
+
+//     }); 
+
 // POST ROUTES DEFINITION START ///////////////////////////////////////////////////////////////
+// CREATE Route (REST Convention) - Add new campground to database
 app.post("/campgrounds", function (req, res) {
     // get data from form
     var name = req.body.name;
     var image = req.body.image;
-    // add to campgrounds array
-    var newCampground = {name: name, image:image}
-
-    campgrounds.push(newCampground)
-    // redirect back to background
-    res.redirect("/campgrounds");
+    var description = req.body.description;
+    var newCampground = {name: name, image: image, description: description};
+    // Model allows us to use mongo's functions
+    Campground.create(newCampground, function(err, newlyCreated) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/campgrounds");
+        }
+    });
 })
+
 // POST ROUTES DEFINITION START ///////////////////////////////////////////////////////////////
 
 // App server listener
