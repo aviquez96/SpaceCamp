@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Campground = require("./models/campgrounds");
-var Comment = require("./models/campgrounds");
+var Comment = require("./models/comment");
 
 var data = [
     {
@@ -28,9 +28,9 @@ function seedDB(){
         }
         console.log("Removed Campgrounds!");
         // Add campgrounds - it is here since inside callback
-        data.forEach( function(seed) {
+        data.forEach(function(seed) {
             Campground.create(seed, function(err, campground) {
-                if( err) {
+                if(err) {
                     console.log(err);
                 } else {
                     console.log("added campground");
@@ -52,7 +52,6 @@ function seedDB(){
             })
         })
     })
-    // Add comments
 }
 
 module.exports = seedDB;

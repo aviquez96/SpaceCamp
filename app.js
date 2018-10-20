@@ -5,18 +5,16 @@ var express = require('express'),
     Campground = require ("./models/campgrounds"),
     seedDb = require("./seeds");
 
-seedDb();
-// Connection to the database
-mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true});
-
 // Constants 
 var port = 3000;
 
+// Connection to the database
+mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true});
 // allows to parse "body" into an object
 app.use(bodyParser.urlencoded({extended: true}));
 // Sets the view folder engine to ejs, so we don't need to specify the file type in res.render
 app.set("view engine", "ejs");
-
+seedDb();
 
 // INDEX 
 app.get("/", function (req, res) {
@@ -59,30 +57,18 @@ app.post("/campgrounds", function (req, res) {
 
 // SHOW Route (REST Convention) - Show information of 1 individual item
 // Remember, this needs to be after /campgrounds/new cause otherwise it will get overwritten and never go to /new 
-app.get("/campgrounds/:id", function (req, res) {
-    Campground.findById(req.params.id, function(err, foundCampground) {
-        if (err) {
+app.get("/campgrounds/:id", function(req, res){
+    //find the campground with provided ID
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
+        if(err){
             console.log(err);
         } else {
+            console.log(foundCampground)
+            //render show template with that campground
             res.render("show", {campground: foundCampground});
         }
-    })
+    });
 })
-
- 
-// Campground.create (
-//     {
-//         name: "Granite Hill",
-//         image: "https://photosforclass.com/download/flickr-1514148183",
-//         description: "A beautiful destination for you and your family!"
-//     }, function (err, newCampground) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log("Campground has been created");
-//         }
-
-//     }); 
 
 // App server listener
 app.listen(port, console.log("YelpCamp server is up!"));

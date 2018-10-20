@@ -1,11 +1,16 @@
-var mongoose = require('mongoose');
 
-// Schema Setup
+var mongoose = require("mongoose");
+
 var campgroundSchema = new mongoose.Schema({
     name: String,
     image: String,
-    description: String
-})
+    description: String,
+    comments: [
+       {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Comment"
+       }
+    ]
+});
 
-// Turn scheema into a model 
 module.exports = mongoose.model("Campground", campgroundSchema);
