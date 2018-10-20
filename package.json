@@ -4,7 +4,8 @@
   "description": "This is a web application done with Node.js taken from the Udemy course \"The Web Developer Bootcamp by Colt Steele\"",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
