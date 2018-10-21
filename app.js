@@ -3,7 +3,8 @@ var express = require('express'),
     bodyParser = require ("body-parser"),
     mongoose = require ("mongoose"),
     Campground = require ("./models/campgrounds"),
-    seedDb = require("./seeds");
+    Comment = require("./models/comment"),
+    seedDb = require("./seeds")
 
 // Constants 
 var port = 3000;
@@ -79,6 +80,28 @@ app.get('/campgrounds/:id/comments/new', function(req,res) {
             console.log(err);
         } else {
             res.render("comments/new", {campground: foundCampground});
+        }
+    })
+})
+
+app.post('/campgrounds/:id/comments', function(req,res) {
+    // lookup camgprounds using ID
+    Campground.findById(req.params.id, function(err, foundCampground) {
+        if (err) {
+            console.log(err); 
+            res.redirect("/campgrounds");  
+        } else {
+            // create the new comment
+            Comment.create(req.body.comment, function(err, commentCreated) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // associate comment with campground
+                    foundCampground.comments.push(commentCreated);
+                    foundCampground.save();
+                    res.redirect('/campgrounds/' + foundCampground._id); 
+                }
+            })   
         }
     })
 })
