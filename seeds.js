@@ -5,18 +5,18 @@ var Comment = require("./models/comment");
 var data = [
     {
         name: "Beauty Explosion", 
-        image:"https://photosforclass.com/download/pixabay-1492818?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe831b80d20f5093ed1584d05fb1d4e97e07ee3d21cac104496f9c07da1eeb4b8_960.jpg&user=ipicgr",
-        description: "This space shit is awesome!"
+        image:"https://photosforclass.com/download/pixabay-2742113?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Feb32b50d29f5023ed1584d05fb1d4e97e07ee3d21cac104491f0c17cafefb4b8_960.jpg&user=geralt",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     },
     {
         name: "Spacial Imagination", 
         image: "https://photosforclass.com/download/pixabay-2643089?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Feb33b50c28fc083ed1584d05fb1d4e97e07ee3d21cac104496f9c07da1eeb4b8_960.jpg&user=geralt",
-        description: "This space shit is awesome!"
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     },
     {
         name: "The astroboi", 
         image:"https://photosforclass.com/download/flickr-15960607948",
-        description: "This space shit is awesome!"
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
 ]
 
