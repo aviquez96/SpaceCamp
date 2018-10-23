@@ -4,7 +4,11 @@ var express = require('express'),
     mongoose = require ("mongoose"),
     Campground = require ("./models/campgrounds"),
     Comment = require("./models/comment"),
-    seedDb = require("./seeds")
+    seedDb = require("./seeds"),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local'),
+    User = require('./models/user')
+
 
 // Constants 
 var port = 3000;
