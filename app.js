@@ -152,6 +152,12 @@ app.post('/login', passport.authenticate("local",
 
 })
 
+// logout route
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/campgrounds');
+})
+
 // App server listener
 app.listen(port, console.log("YelpCamp server is up!"));
 
