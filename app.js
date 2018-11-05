@@ -24,7 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Sets the view folder engine to ejs, so we don't need to specify the file type in res.render
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))
-seedDb();
+
+// seedDb(); seed the database
 
 // Passport configuration
 app.use(require("express-session")({
