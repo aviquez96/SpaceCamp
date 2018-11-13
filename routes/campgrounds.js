@@ -9,23 +9,27 @@ router.get("/", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("campgrounds/index", {campgrounds: allCampgrounds, currentUser: req.user});
+            res.render("campgrounds/index.ejs", {campgrounds: allCampgrounds, currentUser: req.user});
         }
     })
 })
 
 // NEW Campgrounds Route (REST Convention) - Show form to create new campground
-router.get("/new", function (req, res) {
-    res.render("campgrounds/new");
+router.get("/new", isLoggedIn, function (req, res) {
+    res.render("campgrounds/new.ejs");
 })
 
 // CREATE Route (REST Convention) - Add new campground to the database
-router.post("/", function (req, res) {
+router.post("/", isLoggedIn, function (req, res) {
     // get data from form
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
-    var newCampground = {name: name, image: image, description: description};
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newCampground = {name: name, image: image, description: description, author: author};
     // Model allows us to use mongo's functions
     Campground.create(newCampground, function(err, newlyCreated) {
         if (err) {
