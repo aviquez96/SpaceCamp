@@ -5,6 +5,7 @@ var express = require('express'),
     Campground = require ("./models/campgrounds"),
     Comment = require("./models/comment"),
     seedDb = require("./seeds"),
+    methodOverride = require("method-override")
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
     User = require('./models/user')
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Sets the view folder engine to ejs, so we don't need to specify the file type in res.render
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))
+app.use(methodOverride("_method"));
 
 // seedDb(); seed the database
 
