@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Campground = require("../models/campgrounds");
-var middleware = require("../middleware/index.js")
+var middleware = require("../middleware/index.js");
 
 // INDEX REAL (REST Convention) - lists all campgrounds
 router.get("/", function(req, res) {
@@ -16,11 +16,6 @@ router.get("/", function(req, res) {
       });
     }
   });
-});
-
-// NEW Campgrounds Route (REST Convention) - Show form to create new campground
-router.get("/new", middleware.isLoggedIn, function(req, res) {
-  res.render("campgrounds/new.ejs");
 });
 
 // CREATE Route (REST Convention) - Add new campground to the database
@@ -49,6 +44,11 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
   });
 });
 
+// NEW Campgrounds Route (REST Convention) - Show form to create new campground
+router.get("/new", middleware.isLoggedIn, function(req, res) {
+  res.render("campgrounds/new.ejs");
+});
+
 // SHOW Route (REST Convention) - Show information of 1 individual item
 // Remember, this needs to be after /campgrounds/new cause otherwise it will get overwritten and never go to /new
 router.get("/:id", function(req, res) {
@@ -66,7 +66,10 @@ router.get("/:id", function(req, res) {
 });
 
 // EDIT CAMPGROUND ROUTE
-router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) {
+router.get("/:id/edit", middleware.checkCampgroundOwnership, function(
+  req,
+  res
+) {
   Campground.findById(req.params.id, function(err, foundCampground) {
     res.render("campgrounds/edit", { campground: foundCampground });
   });
