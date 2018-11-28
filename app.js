@@ -21,9 +21,12 @@ var port = 3000;
 
 // Connection to the database
 mongoose.connect(
-  "mongodb://localhost/yelp_camp",
+  // "mongodb://localhost/yelp_camp",
+  // { useNewUrlParser: true }
+  "mongodb://adrian:password1@ds259117.mlab.com:59117/space_camp",
   { useNewUrlParser: true }
 );
+
 // allows to parse "body" into an object
 app.use(bodyParser.urlencoded({ extended: true }));
 // Sets the view folder engine to ejs, so we don't need to specify the file type in res.render
