@@ -17,7 +17,7 @@ var commentRoutes = require("./routes/comments"),
   indexRoutes = require("./routes/index");
 
 // Constants
-var port = 3000;
+var port = 5000;
 
 // Connection to the database
 mongoose.connect(
