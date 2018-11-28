@@ -17,7 +17,7 @@ var commentRoutes = require("./routes/comments"),
   indexRoutes = require("./routes/index");
 
 // Constants
-var port = 5000;
+var PORT = process.env.PORT || 5000;
 
 // Connection to the database
 mongoose.connect(
@@ -64,4 +64,4 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 // App server listener
-app.listen(port, console.log("SpaceCamp server is up!"));
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
