@@ -61,4 +61,4 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 // App server listener
-app.listen(port, console.log("YelpCamp server is up!"));
+app.listen(port, console.log("SpaceCamp server is up!"));
