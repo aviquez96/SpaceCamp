@@ -18,12 +18,13 @@ var commentRoutes = require("./routes/comments"),
 
 // Constants
 var PORT = process.env.PORT || 5000;
+var IP = process.env.IP;
 
 // Connection to the database
 mongoose.connect(
   // "mongodb://localhost/yelp_camp",
   // { useNewUrlParser: true }
-  "mongodb://adrian:password1@ds259117.mlab.com:59117/space_camp",
+  process.env.DATABASEURL,
   { useNewUrlParser: true }
 );
 
@@ -64,4 +65,4 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 // App server listener
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+app.listen(PORT, IP, () => console.log(`Listening on ${PORT}`));
