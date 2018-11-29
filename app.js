@@ -19,12 +19,11 @@ var commentRoutes = require("./routes/comments"),
 // Constants
 var PORT = process.env.PORT || 5000;
 var IP = process.env.IP;
+var URL = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
 
 // Connection to the database
 mongoose.connect(
-  // "mongodb://localhost/yelp_camp",
-  // { useNewUrlParser: true }
-  process.env.DATABASEURL,
+  URL,
   { useNewUrlParser: true }
 );
 
