@@ -40,22 +40,22 @@ body {
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url(https://i.imgur.com/yCmFk73.jpg);
+  background-image: url(http://i.imgur.com/yCmFk73.jpg);
 }
 .slideshow li:nth-child(2) {
-  background-image: url(https://i.imgur.com/dlAyRDg.jpg);
+  background-image: url(http://i.imgur.com/dlAyRDg.jpg);
   animation-delay: 10s;
 }
 .slideshow li:nth-child(3) {
-  background-image: url(https://i.imgur.com/06Sj7BD.jpg);
+  background-image: url(http://i.imgur.com/06Sj7BD.jpg);
   animation-delay: 20s;
 }
 .slideshow li:nth-child(4) {
-  background-image: url(https://i.imgur.com/vMPmwbV.jpg);
+  background-image: url(http://i.imgur.com/vMPmwbV.jpg);
   animation-delay: 30s;
 }
 .slideshow li:nth-child(5) {
-  background-image: url(https://i.imgur.com/K9oXc5C.jpg);
+  background-image: url(http://i.imgur.com/K9oXc5C.jpg);
   animation-delay: 40s;
 }
 
