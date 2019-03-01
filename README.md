@@ -3,6 +3,24 @@ This is a web application done with Node.js taken from the Udemy course "The Web
 
 The link to the website can be found [here](https://nameless-crag-28715.herokuapp.com/). If you would like to run it on a local server, follow the next instructions.
 
+## Presentational Images
+The following section will present some images of the website
+
+##### Landing Page
+![](Images/SpaceCamp1.png)
+##### Langing Page Sample 2
+![](Images/SpaceCamp2.png)
+##### Home Page
+![](Images/SpaceCamp3.png)
+##### Login Page
+![](Images/SpaceCamp4.png)
+##### Succesful Login Page With Dynamic User
+![](Images/SpaceCamp5.png)
+##### Create Page
+![](Images/SpaceCamp6.png)
+##### Show Page
+![](Images/SpaceCamp7.png)
+
 ## Getting Started
 To install the application in your local machine, follow the next steps.
 
